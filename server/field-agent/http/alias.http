@@ -1,0 +1,61 @@
+@url = http://localhost:8080/api/alias
+
+### [ ] Get an agent record with aliases attached 
+
+GET http://localhost:8080/api/agent/1 HTTP/1.1
+
+### [ ] Post an alias
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "agentId": 1,
+    "name": "Testing"
+}
+
+### [ ] Post return a 400 if the alias fails a domain rule - name required
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "agentId": 1,
+    "name": ""
+}
+
+### [ ] Post an alias should return 400 - duplicate name no persona
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "agentId": 1,
+    "name": "Testing"
+}
+
+### [ ] PUT an alias 
+
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "aliasId": 1, 
+    "agentId": 1,
+    "name": "Testing",
+    "persona": "Something something" 
+
+}
+
+### [ ] Put should return 400 if the alias fails a domain rule 
+
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "aliasId": 1, 
+    "agentId": 1,
+    "name": ""
+}
+
+### [ ] DELETE 

@@ -1,0 +1,70 @@
+@url = http://localhost:8080/api/security/clearance
+
+
+### Find All Security Clearances
+GET http://localhost:8080/api/security/clearance HTTP/1.1
+
+
+### Find a Security Clearance By ID
+GET http://localhost:8080/api/security/clearance/1 HTTP/1.1
+
+
+### Add a Security Clearance
+POST http://localhost:8080/api/security/clearance HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Test"
+}
+
+### Add a Security Clearance without a Name
+POST http://localhost:8080/api/security/clearance HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": ""
+}
+
+
+### Add a Security Clearance with Duplicate Name
+POST http://localhost:8080/api/security/clearance HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Test"
+}
+
+
+### Update an Existing Security Clearance
+PUT http://localhost:8080/api/security/clearance/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "securityClearanceId": 1,
+  "name": "Top Secret Updated"
+}
+
+
+### Update an Existing Security Clearance with Duplicate Name
+PUT http://localhost:8080/api/security/clearance/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "securityClearanceId": 1,
+  "name": "Test"
+}
+
+### Delete a Security Clearance
+DELETE http://localhost:8080/api/security/clearance/2 HTTP/1.1
+
+### Non-Existent Security Clearance
+GET http://localhost:8080/api/security/clearance/99 HTTP/1.1
+#Expected response: 404
+
+### Delete a Non-Existent Security Clearance
+DELETE http://localhost:8080/api/security/clearance/99 HTTP/1.1
+#Expected response: 404
+
+### Delete a Security Clearance in Use
+DELETE http://localhost:8080/api/security/clearance/1 HTTP/1.1
+#Expected response: 400
